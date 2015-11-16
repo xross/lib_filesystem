@@ -17,7 +17,7 @@
 #ifndef _PFATFS
 #define _PFATFS	4004	/* Revision ID */
 
-#ifdef __cplusplus
+#if defined (__cplusplus) || defined (__XC__)
 extern "C" {
 #endif
 
@@ -152,7 +152,7 @@ FRESULT pf_readdir (DIR* dj, FILINFO* fno);					/* Read a directory item from th
 #endif
 
 
-#ifdef __cplusplus
+#if defined (__cplusplus) || defined (__XC__)
 }
 #endif
 
