@@ -112,4 +112,78 @@ void fs_basic(server interface fs_basic_if i_fs[n_fs_clients],
               fs_format_t fs_format,
               client interface fs_storage_media_if i_media);
 
+/** TODO: document */
+typedef interface fs_if {
+
+  /* file access
+    open
+    close
+    read
+    write
+    seek
+    truncate
+    sync
+    forward
+    gets
+    putc
+    puts
+    printf
+    tell
+    eof
+    size
+    error
+  */
+  /** TODO: document */
+  fs_result_t mount();
+
+  /** TODO: document */
+  fs_result_t open(const char *path);
+
+  /** TODO: document */
+  fs_result_t read(uint8_t *buf, size_t bytes_to_read, size_t *num_bytes_read);
+
+  /** TODO: document */
+  fs_result_t seek(size_t offset, int seek_from_sof);
+
+  /** TODO: document */
+  fs_result_t size(size_t &filesize_bytes);
+
+  /* directory access
+    open_dir
+    close_dir
+    read_dir
+    find_first
+    find_next
+  */
+
+  /* file/directory management
+    stat
+    unlink
+    rename
+    chmod
+    utime
+    mkdir
+    chdir
+    chdrive
+    getcwd
+  */
+
+  /* volume management
+    mount
+    mkfs
+    fdisk
+    get_free
+    get_label
+    set_label
+  */
+
+} fs_if;
+
+/** TODO: document */
+[[distributable]]
+void fs(server interface fs_if i_fs[n_fs_clients],
+        size_t n_fs_clients,
+        fs_format_t fs_format,
+        client interface fs_storage_media_if i_media);
+
 #endif // __fs_h__
