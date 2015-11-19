@@ -21,7 +21,7 @@
 extern "C" {
 #endif
 
-#include "integer.h"
+#include "pffinteger.h"
 #include "pffconf.h"
 
 #if _PFATFS != _PFFCONF
