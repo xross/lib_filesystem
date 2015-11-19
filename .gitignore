@@ -16,3 +16,4 @@
 Installs/*
 test_results.csv
 *.log
+lib_fs/image_builders/fat/fat_image_builder
