@@ -7,10 +7,10 @@
 /* storage control modules to the FatFs module with a defined API.       */
 /*-----------------------------------------------------------------------*/
 
-#include "diskio.h"		/* FatFs lower layer API */
 #include "usbdisk.h"	/* Example: Header file of existing USB MSD control module */
 #include "atadrive.h"	/* Example: Header file of existing ATA harddisk control module */
 #include "sdcard.h"		/* Example: Header file of existing MMC/SDC contorl module */
+#include "ffdiskio.h"		/* FatFs lower layer API */
 
 /* Definitions of physical drive number for each drive */
 #define ATA		0	/* Example: Map ATA harddisk to physical drive 0 */
@@ -22,7 +22,7 @@
 /* Get Drive Status                                                      */
 /*-----------------------------------------------------------------------*/
 
-DSTATUS disk_status (
+DSTATUS ff_disk_status (
 	BYTE pdrv		/* Physical drive nmuber to identify the drive */
 )
 {
@@ -60,7 +60,7 @@ DSTATUS disk_status (
 /* Inidialize a Drive                                                    */
 /*-----------------------------------------------------------------------*/
 
-DSTATUS disk_initialize (
+DSTATUS ff_disk_initialize (
 	BYTE pdrv				/* Physical drive nmuber to identify the drive */
 )
 {
@@ -98,7 +98,7 @@ DSTATUS disk_initialize (
 /* Read Sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
 
-DRESULT disk_read (
+DRESULT ff_disk_read (
 	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
 	BYTE *buff,		/* Data buffer to store read data */
 	DWORD sector,	/* Sector address in LBA */
@@ -147,7 +147,7 @@ DRESULT disk_read (
 /*-----------------------------------------------------------------------*/
 
 #if _USE_WRITE
-DRESULT disk_write (
+DRESULT ff_disk_write (
 	BYTE pdrv,			/* Physical drive nmuber to identify the drive */
 	const BYTE *buff,	/* Data to be written */
 	DWORD sector,		/* Sector address in LBA */
@@ -196,10 +196,10 @@ DRESULT disk_write (
 /*-----------------------------------------------------------------------*/
 
 #if _USE_IOCTL
-DRESULT disk_ioctl (
+DRESULT ff_disk_ioctl (
 	BYTE pdrv,		/* Physical drive nmuber (0..) */
 	BYTE cmd,		/* Control code */
-	void *buff		/* Buffer to send/receive control data */
+	DWORD *buff		/* Buffer to send/receive control data */
 )
 {
 	DRESULT res;

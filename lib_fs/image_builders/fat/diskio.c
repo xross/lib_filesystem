@@ -4,7 +4,7 @@
 
 // This implementation allows FatFs to use a file as a disk image.
 
-#include "diskio.h"
+#include "ffdiskio.h"
 #include <stdio.h>
 
 #ifndef BYTES_PER_SECTOR
@@ -46,7 +46,7 @@ extern char *disk_image_filename;
 /**
  *  \param pdrv Physical drive number to identify the drive
  */
-DSTATUS disk_status(BYTE pdrv) {
+DSTATUS ff_disk_status(BYTE pdrv) {
   switch (pdrv) {
     case DISK_IMAGE:
       // Check the file handle is pointing to something
@@ -70,7 +70,7 @@ DSTATUS disk_status(BYTE pdrv) {
 /**
  *  \param pdrv Physical drive number to identify the drive
  */
-DSTATUS disk_initialize(BYTE pdrv) {
+DSTATUS ff_disk_initialize(BYTE pdrv) {
   switch (pdrv) {
     case DISK_IMAGE:
       // Create the output file truncating to zero if it already exists
@@ -100,7 +100,7 @@ DSTATUS disk_initialize(BYTE pdrv) {
  *  \param sector Sector address in LBA
  *  \param count  Number of sectors to read
  */
-DRESULT disk_read(BYTE pdrv, BYTE *buff, DWORD sector, UINT count) {
+DRESULT ff_disk_read(BYTE pdrv, BYTE *buff, DWORD sector, UINT count) {
   DISKIO_I_PRINTF("Reading %d sector(s), starting from %lu\n", count, sector);
   switch (pdrv) {
     case DISK_IMAGE:
@@ -138,7 +138,7 @@ DRESULT disk_read(BYTE pdrv, BYTE *buff, DWORD sector, UINT count) {
  *  \param sector Sector address in LBA
  *  \param count  Number of sectors to write
  */
-DRESULT disk_write(BYTE pdrv, const BYTE *buff, DWORD sector, UINT count) {
+DRESULT ff_disk_write(BYTE pdrv, const BYTE *buff, DWORD sector, UINT count) {
   DISKIO_I_PRINTF("Writing %d sector(s), starting from %lu\n", count, sector);
   switch (pdrv) {
     case DISK_IMAGE:
@@ -176,7 +176,7 @@ DRESULT disk_write(BYTE pdrv, const BYTE *buff, DWORD sector, UINT count) {
  *  \param cmd  Control code
  *  \param buff Buffer to send/receive control data
  */
-DRESULT disk_ioctl(BYTE pdrv, BYTE cmd, void *buff) {
+DRESULT ff_disk_ioctl(BYTE pdrv, BYTE cmd, DWORD *buff) {
   switch (pdrv) {
     case DISK_IMAGE:
       switch (cmd) {
