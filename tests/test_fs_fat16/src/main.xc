@@ -11,12 +11,12 @@ fl_QSPIPorts qspi_flash_ports = {
   on tile[0]: XS1_CLKBLK_1
 };
 
-void application(client interface fs_basic_if i_fs) {
+void application(client interface fs_if i_fs) {
   i_fs.mount();
 }
 
 int main(void) {
-  interface fs_basic_if i_fs[1];
+  interface fs_if i_fs[1];
   interface fs_storage_media_if i_media;
   fl_QuadDeviceSpec qspi_spec = FL_QUADDEVICE_SPANSION_S25FL116K;
   // static const size_t sector_size = (size_t)qspi_spec.sectorSizes.regularSectorSize;
