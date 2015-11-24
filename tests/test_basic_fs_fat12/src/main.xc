@@ -57,7 +57,7 @@ int main(void) {
   fl_QuadDeviceSpec qspi_spec = FL_QUADDEVICE_SPANSION_S25FL116K;
 
   par {
-    qspi_flash_fs_media(i_media, qspi_flash_ports, qspi_spec, 4096);
+    qspi_flash_fs_media(i_media, qspi_flash_ports, qspi_spec, 512);
     fs_basic(i_fs, 1, FS_FORMAT_FAT12, i_media);
     application(i_fs[0]);
   }
