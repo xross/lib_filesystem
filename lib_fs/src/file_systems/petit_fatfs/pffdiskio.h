@@ -13,15 +13,15 @@ extern "C" {
 
 
 /* Status of Disk Functions */
-typedef BYTE	DSTATUS;
+typedef BYTE  DSTATUS;
 
 
 /* Results of Disk Functions */
 typedef enum {
-	RES_OK = 0,		/* 0: Function succeeded */
-	RES_ERROR,		/* 1: Disk error */
-	RES_NOTRDY,		/* 2: Not ready */
-	RES_PARERR		/* 3: Invalid parameter */
+  RES_OK = 0,   /* 0: Function succeeded */
+  RES_ERROR,    /* 1: Disk error */
+  RES_NOTRDY,   /* 2: Not ready */
+  RES_PARERR    /* 3: Invalid parameter */
 } DRESULT;
 
 
@@ -32,11 +32,11 @@ DSTATUS pff_disk_initialize (void);
 DRESULT pff_disk_readp (BYTE* buff, DWORD sector, UINT offser, UINT count);
 DRESULT pff_disk_writep (const BYTE* buff, DWORD sc);
 
-#define STA_NOINIT		0x01	/* Drive not initialized */
-#define STA_NODISK		0x02	/* No medium in the drive */
+#define STA_NOINIT    0x01  /* Drive not initialized */
+#define STA_NODISK    0x02  /* No medium in the drive */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif	/* _DISKIO_DEFINED */
+#endif  /* _DISKIO_DEFINED */

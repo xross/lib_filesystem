@@ -8,12 +8,12 @@
 extern unsafe client interface fs_storage_media_if i_media;
 
 DSTATUS pff_disk_initialize() {
-	DSTATUS stat;
+  DSTATUS stat;
 
-	unsafe {
-		stat = i_media.initialise();
-	}
-	return stat;
+  unsafe {
+    stat = i_media.initialise();
+  }
+  return stat;
 }
 
 /**
@@ -23,12 +23,12 @@ DSTATUS pff_disk_initialize() {
  *  \param count  Byte count (bit15:destination)
  */
 DRESULT pff_disk_readp(BYTE* buff, DWORD sector, UINT offset, UINT count) {
-	DRESULT res;
+  DRESULT res;
 
-	unsafe {
-		res = i_media.read(buff, sector, offset, count);
-	}
-	return res;
+  unsafe {
+    res = i_media.read(buff, sector, offset, count);
+  }
+  return res;
 }
 
 uint32_t sector_to_write = -1;
@@ -38,22 +38,22 @@ uint32_t sector_to_write = -1;
  *  \param sc   Sector number (LBA) or Number of bytes to send
  */
 DRESULT pff_disk_writep(const BYTE* buff, DWORD sc) {
-	DRESULT res;
+  DRESULT res;
 
-	if (!buff) {
-		if (sc) {
-			// Initiate write process
-			sector_to_write = sc;
-		} else {
-			// Finalize write process
-			sector_to_write = -1;
-		}
-	} else {
-		// Send data to the disk
-		unsafe {
-			res = i_media.write(buff, sector_to_write, sc);
-		}
-		sector_to_write++;
-	}
-	return res;
+  if (!buff) {
+    if (sc) {
+      // Initiate write process
+      sector_to_write = sc;
+    } else {
+      // Finalize write process
+      sector_to_write = -1;
+    }
+  } else {
+    // Send data to the disk
+    unsafe {
+      res = i_media.write(buff, sector_to_write, sc);
+    }
+    sector_to_write++;
+  }
+  return res;
 }
