@@ -12,7 +12,7 @@ void qspi_flash_fs_media(server interface fs_storage_media_if i_media,
   xassert((qspi_spec.sectorLayout == SECTOR_LAYOUT_REGULAR)
           && msg("Only QSPI flash with regular sector layout are supported\n"));
 
-  while(1) {
+  while (1) {
     select {
       case i_media.initialise() -> fs_media_status_t status:
         if (fl_connectToDevice(qspi_flash_ports, &qspi_spec, 1)) {

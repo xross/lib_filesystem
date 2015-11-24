@@ -12,7 +12,7 @@ void fs(server interface fs_if i_fs[n_fs_clients],
 
   FATFS fatfs;
 
-  while(1) {
+  while (1) {
     select {
       case i_fs[int i].mount() -> fs_result_t result:
         if (fs_format == FS_FORMAT_FAT16) {
