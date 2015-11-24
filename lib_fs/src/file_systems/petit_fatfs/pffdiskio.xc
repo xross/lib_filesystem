@@ -3,25 +3,18 @@
 /*-----------------------------------------------------------------------*/
 
 #include "pffdiskio.h"
+#include "fs.h"
 
-
-/*-----------------------------------------------------------------------*/
-/* Initialize Disk Drive                                                 */
-/*-----------------------------------------------------------------------*/
+extern unsafe client interface fs_storage_media_if i_media;
 
 DSTATUS pff_disk_initialize() {
 	DSTATUS stat;
 
-	// Put your code here
-
+	unsafe {
+		stat = i_media.initialise();
+	}
 	return stat;
 }
-
-
-
-/*-----------------------------------------------------------------------*/
-/* Read Partial Sector                                                   */
-/*-----------------------------------------------------------------------*/
 
 /**
  *  \param buff   Pointer to the destination object
@@ -32,16 +25,13 @@ DSTATUS pff_disk_initialize() {
 DRESULT pff_disk_readp(BYTE* buff, DWORD sector, UINT offset, UINT count) {
 	DRESULT res;
 
-	// Put your code here
-
+	unsafe {
+		res = i_media.read(buff, sector, offset, count);
+	}
 	return res;
 }
 
-
-
-/*-----------------------------------------------------------------------*/
-/* Write Partial Sector                                                  */
-/*-----------------------------------------------------------------------*/
+uint32_t sector_to_write = -1;
 
 /**
  *  \param buff Pointer to the data to be written, NULL:Initiate/Finalize write operation
@@ -50,23 +40,20 @@ DRESULT pff_disk_readp(BYTE* buff, DWORD sector, UINT offset, UINT count) {
 DRESULT pff_disk_writep(const BYTE* buff, DWORD sc) {
 	DRESULT res;
 
-
 	if (!buff) {
 		if (sc) {
-
 			// Initiate write process
-
+			sector_to_write = sc;
 		} else {
-
 			// Finalize write process
-
+			sector_to_write = -1;
 		}
 	} else {
-
 		// Send data to the disk
-
+		unsafe {
+			res = i_media.write(buff, sector_to_write, sc);
+		}
+		sector_to_write++;
 	}
-
 	return res;
 }
-

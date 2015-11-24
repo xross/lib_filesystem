@@ -2,6 +2,8 @@
 #include "xassert.h"
 #include "pff.h"
 
+unsafe client interface fs_storage_media_if i_media;
+
 [[distributable]]
 void fs_basic(server interface fs_basic_if i_fs[n_fs_clients],
               size_t n_fs_clients,
@@ -14,7 +16,11 @@ void fs_basic(server interface fs_basic_if i_fs[n_fs_clients],
 
   FATFS fatfs;
 
-  while(1) {
+  unsafe {
+    i_media = i_storage_media;
+  }
+
+  while (1) {
     select {
       case i_fs[int i].mount() -> fs_result_t result:
         result = (fs_result_t)pf_mount(&fatfs);
