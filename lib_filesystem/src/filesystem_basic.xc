@@ -1,14 +1,14 @@
-#include "fs.h"
+#include "filesystem.h"
 #include "xassert.h"
 #include "pff.h"
 
 unsafe client interface fs_storage_media_if i_media;
 
 [[distributable]]
-void fs_basic(server interface fs_basic_if i_fs[n_fs_clients],
-              size_t n_fs_clients,
-              fs_format_t fs_format,
-              client interface fs_storage_media_if i_storage_media) {
+void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
+                      size_t n_fs_clients,
+                      fs_format_t fs_format,
+                      client interface fs_storage_media_if i_storage_media) {
   xassert(((fs_format == FS_FORMAT_FAT12) ||
            (fs_format == FS_FORMAT_FAT16) ||
            (fs_format == FS_FORMAT_FAT32))

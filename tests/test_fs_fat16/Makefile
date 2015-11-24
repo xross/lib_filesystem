@@ -24,7 +24,7 @@ ENABLE_STAGED_BUILD = 1 # TODO: remove this line
 
 # The USED_MODULES variable lists other module used by the application.
 
-USED_MODULES = lib_fs
+USED_MODULES = lib_filesystem
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure

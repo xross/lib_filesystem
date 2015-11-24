@@ -1,4 +1,4 @@
-#include "fs.h"
+#include "filesystem.h"
 #include "qspi_flash_storage_media.h"
 #include <quadflash.h>
 #include <QuadSpecMacros.h>
@@ -23,7 +23,7 @@ int main(void) {
 
   par {
     qspi_flash_fs_media(i_media, qspi_flash_ports, qspi_spec, 4096);
-    fs(i_fs, 1, FS_FORMAT_FAT16, i_media);
+    filesystem(i_fs, 1, FS_FORMAT_FAT16, i_media);
     application(i_fs[0]);
   }
 

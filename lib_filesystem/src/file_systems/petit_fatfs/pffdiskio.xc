@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------*/
 
 #include "pffdiskio.h"
-#include "fs.h"
+#include "filesystem.h"
 
 extern unsafe client interface fs_storage_media_if i_media;
 

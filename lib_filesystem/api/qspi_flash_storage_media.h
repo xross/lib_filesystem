@@ -1,7 +1,7 @@
 #ifndef __qspi_flash_storage_media_h__
 #define __qspi_flash_storage_media_h__
 
-#include "fs.h"
+#include "filesystem.h"
 #include <quadflash.h>
 #include <stddef.h>
 

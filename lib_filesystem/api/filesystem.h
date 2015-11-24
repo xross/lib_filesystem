@@ -1,5 +1,5 @@
-#ifndef __fs_h__
-#define __fs_h__
+#ifndef __filesystem_h__
+#define __filesystem_h__
 
 #include <stdint.h>
 #include <stddef.h>
@@ -109,10 +109,10 @@ extends client interface fs_basic_if : {
 
 /** TODO: document */
 [[distributable]]
-void fs_basic(server interface fs_basic_if i_fs[n_fs_clients],
-              size_t n_fs_clients,
-              fs_format_t fs_format,
-              client interface fs_storage_media_if i_storage_media);
+void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
+                      size_t n_fs_clients,
+                      fs_format_t fs_format,
+                      client interface fs_storage_media_if i_storage_media);
 
 /** TODO: document */
 typedef interface fs_if {
@@ -183,9 +183,9 @@ typedef interface fs_if {
 
 /** TODO: document */
 [[distributable]]
-void fs(server interface fs_if i_fs[n_fs_clients],
-        size_t n_fs_clients,
-        fs_format_t fs_format,
-        client interface fs_storage_media_if i_storage_media);
+void filesystem(server interface fs_if i_fs[n_fs_clients],
+                size_t n_fs_clients,
+                fs_format_t fs_format,
+                client interface fs_storage_media_if i_storage_media);
 
-#endif // __fs_h__
+#endif // __filesystem_h__
