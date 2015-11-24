@@ -52,7 +52,8 @@ typedef interface fs_storage_media_if {
   fs_media_status_t status();
 
   /** TODO: document */
-  fs_result_t read(uint8_t *buf, uint32_t sector, uint32_t count);
+  fs_result_t read(uint8_t *buf, uint32_t sector, uint32_t offset,
+                   uint32_t count);
 
   /** TODO: document */
   fs_result_t write(const uint8_t *buf, uint32_t sector, uint32_t count);

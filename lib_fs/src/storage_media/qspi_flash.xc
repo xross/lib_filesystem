@@ -27,9 +27,9 @@ void qspi_flash_fs_media(server interface fs_storage_media_if i_media,
         status = FS_MED_OK;
         break;
 
-      case i_media.read(uint8_t *buf, uint32_t sector, uint32_t count)
-                          -> fs_result_t result:
-        if (fl_readData(sector * sector_size, count, buf)) {
+      case i_media.read(uint8_t *buf, uint32_t sector, uint32_t offset,
+                        uint32_t count) -> fs_result_t result:
+        if (fl_readData((sector * sector_size) + offset, count, buf)) {
           result = FS_RES_DISK_ERR;
         } else {
           result = FS_RES_OK;
