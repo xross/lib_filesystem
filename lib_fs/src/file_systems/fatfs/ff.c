@@ -20,6 +20,22 @@
 #include "ffdiskio.h"		/* Declarations of disk I/O functions */
 
 
+#ifndef FATFS_INFO
+// Print macro will be enabled with the disk IO prints
+#if DISKIO_INFO
+#define FATFS_INFO 1
+#else
+#define FATFS_INFO 0
+#endif
+#endif
+
+#if FATFS_INFO
+#include <stdio.h>
+#define FATFS_I_PRINTF(...) printf("  FatFs: ");printf(__VA_ARGS__)
+#else
+#define FATFS_I_PRINTF(...)
+#endif
+
 /*--------------------------------------------------------------------------
 
    Module Private Definitions
@@ -4163,6 +4179,19 @@ FRESULT f_mkfs (
 	if (   (fmt == FS_FAT16 && n_clst < MIN_FAT16)
 		|| (fmt == FS_FAT32 && n_clst < MIN_FAT32))
 		return FR_MKFS_ABORTED;
+
+	// Output FAT sub-type when called by image builder
+	switch (fmt) {
+		case FS_FAT12:
+			FATFS_I_PRINTF("FAT12 sub-type in use\n");
+			break;
+		case FS_FAT16:
+			FATFS_I_PRINTF("FAT16 sub-type in use\n");
+			break;
+		case FS_FAT32:
+			FATFS_I_PRINTF("FAT32 sub-type in use\n");
+			break;
+	}
 
 	/* Determine system ID in the partition table */
 	if (fmt == FS_FAT32) {
