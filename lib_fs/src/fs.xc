@@ -6,7 +6,7 @@
 void fs(server interface fs_if i_fs[n_fs_clients],
         size_t n_fs_clients,
         fs_format_t fs_format,
-        client interface fs_storage_media_if i_media) {
+        client interface fs_storage_media_if i_storage_media) {
   xassert(((fs_format == FS_FORMAT_FAT16) || (fs_format == FS_FORMAT_FAT32))
           && msg("fs_basic only supports FAT16 and FAT32\n"));
 

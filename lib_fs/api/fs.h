@@ -112,7 +112,7 @@ extends client interface fs_basic_if : {
 void fs_basic(server interface fs_basic_if i_fs[n_fs_clients],
               size_t n_fs_clients,
               fs_format_t fs_format,
-              client interface fs_storage_media_if i_media);
+              client interface fs_storage_media_if i_storage_media);
 
 /** TODO: document */
 typedef interface fs_if {
@@ -186,6 +186,6 @@ typedef interface fs_if {
 void fs(server interface fs_if i_fs[n_fs_clients],
         size_t n_fs_clients,
         fs_format_t fs_format,
-        client interface fs_storage_media_if i_media);
+        client interface fs_storage_media_if i_storage_media);
 
 #endif // __fs_h__
