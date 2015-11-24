@@ -18,13 +18,13 @@ APP_NAME =
 # If the variable XCC_MAP_FLAGS is set it overrides the flags passed to
 # xcc for the final link (mapping) stage.
 
-XCC_FLAGS = -Os -g -save-temps -report -lquadflash -fxscope -DDEBUG_PRINT_ENABLE=0 -DXASSERT_ENABLE_ASSERTIONS=0
+XCC_FLAGS = -Os -g -save-temps -report -lquadflash -fxscope -DDEBUG_PRINT_ENABLE=1 -DXASSERT_ENABLE_ASSERTIONS=0
 
 ENABLE_STAGED_BUILD = 1 # TODO: remove this line
 
 # The USED_MODULES variable lists other module used by the application.
 
-USED_MODULES = lib_fs
+USED_MODULES = lib_fs lib_logging
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure

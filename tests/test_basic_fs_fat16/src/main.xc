@@ -3,6 +3,8 @@
 #include <quadflash.h>
 #include <QuadSpecMacros.h>
 #include <platform.h>
+#include "debug_print.h"
+#include <stdlib.h>
 
 fl_QSPIPorts qspi_flash_ports = {
   PORT_SQI_CS,
@@ -12,7 +14,41 @@ fl_QSPIPorts qspi_flash_ports = {
 };
 
 void application(client interface fs_basic_if i_fs) {
-  i_fs.mount();
+  fs_result_t result;
+
+  debug_printf("Mounting filesystem...\n");
+  result = i_fs.mount();
+  if (result != FS_RES_OK) {
+    debug_printf("result = %d\n", result);
+    exit(1);
+  }
+
+  debug_printf("Opening file...\n");
+  result = i_fs.open("SMALL.TXT");
+  if (result != FS_RES_OK) {
+    debug_printf("result = %d\n", result);
+    exit(1);
+  }
+
+  debug_printf("Getting filesize...\n");
+  size_t file_size;
+  // result = i_fs.size(file_size);
+  if (result != FS_RES_OK) {
+    debug_printf("result = %d\n", result);
+    exit(1);
+  }
+
+  debug_printf("Reading file...\n");
+  uint8_t buf[20];
+  size_t num_bytes_read;
+  result = i_fs.read(buf, 20, &num_bytes_read);
+  if (result != FS_RES_OK) {
+    debug_printf("result = %d\n", result);
+    exit(1);
+  }
+
+  debug_printf("num_bytes_read = %d\nbuf=%s\n", num_bytes_read, buf);
+  exit(0);
 }
 
 int main(void) {
