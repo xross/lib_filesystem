@@ -6,6 +6,7 @@
 
 /** TODO: document */
 typedef enum {
+  FS_FORMAT_FAT12, ///< TODO: document
   FS_FORMAT_FAT16, ///< TODO: document
   FS_FORMAT_FAT32  ///< TODO: document
 } fs_format_t;
