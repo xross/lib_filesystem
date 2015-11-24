@@ -7,10 +7,10 @@
 /* storage control modules to the FatFs module with a defined API.       */
 /*-----------------------------------------------------------------------*/
 
-#include "usbdisk.h"	/* Example: Header file of existing USB MSD control module */
-#include "atadrive.h"	/* Example: Header file of existing ATA harddisk control module */
-#include "sdcard.h"		/* Example: Header file of existing MMC/SDC contorl module */
 #include "ffdiskio.h"		/* FatFs lower layer API */
+// #include "usbdisk.h"	 Example: Header file of existing USB MSD control module 
+// #include "atadrive.h"	/* Example: Header file of existing ATA harddisk control module */
+// #include "sdcard.h"		/* Example: Header file of existing MMC/SDC contorl module */
 
 /* Definitions of physical drive number for each drive */
 #define ATA		0	/* Example: Map ATA harddisk to physical drive 0 */
@@ -31,21 +31,21 @@ DSTATUS ff_disk_status (
 
 	switch (pdrv) {
 	case ATA :
-		result = ATA_disk_status();
+		// result = ATA_disk_status();
 
 		// translate the reslut code here
 
 		return stat;
 
 	case MMC :
-		result = MMC_disk_status();
+		// result = MMC_disk_status();
 
 		// translate the reslut code here
 
 		return stat;
 
 	case USB :
-		result = USB_disk_status();
+		// result = USB_disk_status();
 
 		// translate the reslut code here
 
@@ -69,21 +69,21 @@ DSTATUS ff_disk_initialize (
 
 	switch (pdrv) {
 	case ATA :
-		result = ATA_disk_initialize();
+		// result = ATA_disk_initialize();
 
 		// translate the reslut code here
 
 		return stat;
 
 	case MMC :
-		result = MMC_disk_initialize();
+		// result = MMC_disk_initialize();
 
 		// translate the reslut code here
 
 		return stat;
 
 	case USB :
-		result = USB_disk_initialize();
+		// result = USB_disk_initialize();
 
 		// translate the reslut code here
 
@@ -112,7 +112,7 @@ DRESULT ff_disk_read (
 	case ATA :
 		// translate the arguments here
 
-		result = ATA_disk_read(buff, sector, count);
+		// result = ATA_disk_read(buff, sector, count);
 
 		// translate the reslut code here
 
@@ -121,7 +121,7 @@ DRESULT ff_disk_read (
 	case MMC :
 		// translate the arguments here
 
-		result = MMC_disk_read(buff, sector, count);
+		// result = MMC_disk_read(buff, sector, count);
 
 		// translate the reslut code here
 
@@ -130,7 +130,7 @@ DRESULT ff_disk_read (
 	case USB :
 		// translate the arguments here
 
-		result = USB_disk_read(buff, sector, count);
+		// result = USB_disk_read(buff, sector, count);
 
 		// translate the reslut code here
 
@@ -161,7 +161,7 @@ DRESULT ff_disk_write (
 	case ATA :
 		// translate the arguments here
 
-		result = ATA_disk_write(buff, sector, count);
+		// result = ATA_disk_write(buff, sector, count);
 
 		// translate the reslut code here
 
@@ -170,7 +170,7 @@ DRESULT ff_disk_write (
 	case MMC :
 		// translate the arguments here
 
-		result = MMC_disk_write(buff, sector, count);
+		// result = MMC_disk_write(buff, sector, count);
 
 		// translate the reslut code here
 
@@ -179,7 +179,7 @@ DRESULT ff_disk_write (
 	case USB :
 		// translate the arguments here
 
-		result = USB_disk_write(buff, sector, count);
+		// result = USB_disk_write(buff, sector, count);
 
 		// translate the reslut code here
 
