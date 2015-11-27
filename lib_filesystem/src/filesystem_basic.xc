@@ -45,7 +45,12 @@ void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
         break;
 
       case i_fs[int i].size(size_t &filesize_bytes) -> fs_result_t result:
-
+        if (FA_OPENED == fatfs.flag) {
+          filesize_bytes = fatfs.fsize;
+          result = FS_RES_OK;
+        } else {
+          result = FS_RES_NOT_OPENED;
+        }
         break;
     }
   }

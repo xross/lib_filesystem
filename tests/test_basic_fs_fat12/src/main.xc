@@ -30,24 +30,37 @@ void application(client interface fs_basic_if i_fs) {
     exit(1);
   }
 
-  debug_printf("Getting filesize...\n");
+  debug_printf("Getting file size...\n");
   size_t file_size;
-  // result = i_fs.size(file_size);
+  result = i_fs.size(file_size);
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
     exit(1);
   }
 
   debug_printf("Reading file...\n");
-  uint8_t buf[20];
+  size_t bytes_to_read;
   size_t num_bytes_read;
-  result = i_fs.read(buf, 20, &num_bytes_read);
+  uint8_t buf[1024];
+  if (file_size > 1024) {
+    bytes_to_read = 1024;
+  } else {
+    bytes_to_read = file_size;
+  }
+  result = i_fs.read(buf, bytes_to_read, &num_bytes_read);
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
     exit(1);
   }
 
-  debug_printf("num_bytes_read = %d\nbuf=%s\n", num_bytes_read, buf);
+  debug_printf("Attempted to read %d byte(s) of %d byte file.\n"
+               "Read %d byte(s) of file:\n",
+               bytes_to_read, file_size, num_bytes_read);
+  for (int i = 0; i < num_bytes_read; i++) {
+    debug_printf("%c", buf[i]);
+  }
+  debug_printf("\n");
+
   exit(0);
 }
 
