@@ -81,9 +81,6 @@ typedef interface fs_basic_if {
   /** TODO: document */
   fs_result_t size(size_t &filesize_bytes);
 
-  // TODO: add close()
-  // TODO: add unmount()
-
 } fs_basic_if;
 
 #if 0
