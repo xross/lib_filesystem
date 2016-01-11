@@ -1,6 +1,6 @@
 BYTES_PER_SECTOR ?= 512
 SECTOR_COUNT ?= 256
-BLOCK_SIZE ?= 128
+BLOCK_SIZE ?= 128 # Erase block size
 
 CC = gcc
 CFLAGS = -Wall
