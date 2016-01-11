@@ -8,10 +8,9 @@ CFLAGS = -Wall
 FAT_DIR = ../../src/file_systems/fatfs
 FAT_SRC = $(FAT_DIR)/ff.c
 
-IMAGE_BUILDER_SRC = make_fat.c \
-										diskio.c
-
 OUTPUT_BIN = bin
+IMAGE_BUILDER_SRC = src/make_fat.c \
+										src/diskio.c
 
 APP_NAME = fat_image_builder
 
