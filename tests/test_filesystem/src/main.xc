@@ -19,7 +19,6 @@ int main(void) {
   interface fs_if i_fs[1];
   interface fs_storage_media_if i_media;
   fl_QuadDeviceSpec qspi_spec = FL_QUADDEVICE_SPANSION_S25FL116K;
-  // static const size_t sector_size = (size_t)qspi_spec.sectorSizes.regularSectorSize;
 
   par {
     qspi_flash_fs_media(i_media, qspi_flash_ports, qspi_spec, 4096);
