@@ -11,7 +11,7 @@ FAT_SRC = $(FAT_DIR)/ff.c
 IMAGE_BUILDER_SRC = src/make_fat.c \
 										src/diskio.c
 
-APP_NAME = fat_image_builder
+APP_NAME = fat_image_creator
 
 BUILD_OPTIONS = -DBYTES_PER_SECTOR=$(BYTES_PER_SECTOR) \
 								-DSECTOR_COUNT=$(SECTOR_COUNT) \
