@@ -24,7 +24,7 @@ void application(client interface fs_basic_if i_fs) {
   }
 
   debug_printf("Opening file...\n");
-  result = i_fs.open("SMALL.TXT");
+  result = i_fs.open("HELLO.TXT");
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
     exit(1);
