@@ -1,0 +1,2 @@
+TODO: add script to call call the fat_image_builder and create a disk image for
+use in the other tests.

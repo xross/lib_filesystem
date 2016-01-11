@@ -48,6 +48,8 @@ int main(int argc, char const *argv[]) {
     exit(1);
   }
 
+  // TODO: test write functionality
+
   printf("num_bytes_read = %d\nbuf=%s\n", num_bytes_read, buf);
 
   return 0;
