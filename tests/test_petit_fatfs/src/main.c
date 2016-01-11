@@ -1,3 +1,4 @@
+// Copyright (c) 2016, XMOS Ltd, All rights reserved
 #include "pff.h"
 #include <stdio.h>
 #include <string.h>

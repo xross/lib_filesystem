@@ -1,3 +1,4 @@
+// Copyright (c) 2016, XMOS Ltd, All rights reserved
 #include "filesystem.h"
 #include "qspi_flash_storage_media.h"
 #include <quadflash.h>

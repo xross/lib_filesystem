@@ -1,3 +1,4 @@
+// Copyright (c) 2016, XMOS Ltd, All rights reserved
 #include "filesystem.h"
 #include "xassert.h"
 #include "ff.h"

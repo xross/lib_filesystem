@@ -1,3 +1,4 @@
+// Copyright (c) 2016, XMOS Ltd, All rights reserved
 #ifndef __filesystem_h__
 #define __filesystem_h__
 
