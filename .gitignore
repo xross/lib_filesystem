@@ -16,5 +16,5 @@
 Installs/*
 test_results.csv
 *.log
-lib_filesystem/image_builders/fat/fat_image_builder
+lib_filesystem/disk_image_creators/fat/fat_image_creator
 tests/test_petit_fatfs/petit_fatfs_test
