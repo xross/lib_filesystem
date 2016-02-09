@@ -13,7 +13,7 @@ void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
   xassert(((fs_format == FS_FORMAT_FAT12) ||
            (fs_format == FS_FORMAT_FAT16) ||
            (fs_format == FS_FORMAT_FAT32))
-          && msg("fs_basic only supports FAT16 and FAT32\n"));
+          && msg("fs_basic only supports FAT\n"));
 
   FATFS fatfs;
 
