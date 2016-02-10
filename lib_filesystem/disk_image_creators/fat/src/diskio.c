@@ -176,7 +176,7 @@ DRESULT ff_disk_write(BYTE pdrv, const BYTE *buff, DWORD sector, UINT count) {
  *  \param cmd  Control code
  *  \param buff Buffer to send/receive control data
  */
-DRESULT ff_disk_ioctl(BYTE pdrv, BYTE cmd, DWORD *buff) {
+DRESULT ff_disk_ioctl(BYTE pdrv, BYTE cmd, WORD *buff) {
   switch (pdrv) {
     case DISK_IMAGE:
       switch (cmd) {
