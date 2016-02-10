@@ -199,7 +199,7 @@ DRESULT ff_disk_write (
 DRESULT ff_disk_ioctl (
   BYTE pdrv,    /* Physical drive nmuber (0..) */
   BYTE cmd,   /* Control code */
-  DWORD *buff   /* Buffer to send/receive control data */
+  WORD *buff   /* Buffer to send/receive control data */
 )
 {
   DRESULT res;
