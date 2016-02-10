@@ -1,5 +1,5 @@
 BYTES_PER_SECTOR ?= 512
-SECTOR_COUNT ?= 256
+SECTOR_COUNT ?= 3444 # Same as high density 3.5" floppy disk
 BLOCK_SIZE ?= 128 # Erase block size
 
 CC = gcc
