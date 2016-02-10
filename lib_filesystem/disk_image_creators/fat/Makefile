@@ -3,7 +3,7 @@ SECTOR_COUNT ?= 256
 BLOCK_SIZE ?= 128 # Erase block size
 
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -Wextra
 
 FAT_DIR = ../../src/file_systems/fatfs
 FAT_SRC = $(FAT_DIR)/ff.c
