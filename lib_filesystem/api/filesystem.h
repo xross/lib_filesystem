@@ -71,10 +71,11 @@ typedef interface fs_basic_if {
   fs_result_t mount();
 
   /** TODO: document */
-  fs_result_t open(const char *path);
+  fs_result_t open(char path[n], static const size_t n);
 
   /** TODO: document */
-  fs_result_t read(uint8_t *buf, size_t bytes_to_read, size_t *num_bytes_read);
+  fs_result_t read(uint8_t buf[n], static const size_t n, size_t bytes_to_read,
+                   size_t &num_bytes_read);
 
   /** TODO: document */
   fs_result_t seek(size_t offset, int seek_from_sof);
