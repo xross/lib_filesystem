@@ -43,6 +43,7 @@ void application(client interface fs_basic_if i_fs) {
   size_t bytes_to_read;
   size_t num_bytes_read;
   uint8_t buf[1024];
+  // TODO: replace the file size check with assert to ensure whole file read
   if (file_size > 1024) {
     bytes_to_read = 1024;
   } else {
@@ -61,6 +62,8 @@ void application(client interface fs_basic_if i_fs) {
     debug_printf("%c", buf[i]);
   }
   debug_printf("\n");
+
+  // TODO: Attempt partial file read
 
   exit(0);
 }

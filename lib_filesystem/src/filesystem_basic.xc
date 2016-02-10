@@ -33,7 +33,7 @@ void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
 
       case i_fs[int i].read(uint8_t *buf, size_t bytes_to_read,
                             size_t *num_bytes_read) -> fs_result_t result:
-        result = pf_read(buf, (UINT)num_bytes_read, (UINT*)num_bytes_read);
+        result = pf_read(buf, (UINT)bytes_to_read, (UINT*)num_bytes_read);
         break;
 
       case i_fs[int i].seek(size_t offset, int seek_from_sof)
