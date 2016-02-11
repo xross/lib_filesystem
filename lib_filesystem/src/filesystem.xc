@@ -38,7 +38,7 @@ void filesystem(server interface fs_if i_fs[n_fs_clients],
                               -> fs_result_t result:
         if (fs_format == FS_FORMAT_FAT16) {
           // DWORD ofs = offset;
-          // if (seek_from_sof) {
+          // if (!seek_from_sof) {
           //   ofs += fatfs.fptr;
           // }
           // result = pf_lseek(ofs);

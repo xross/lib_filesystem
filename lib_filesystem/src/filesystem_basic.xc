@@ -39,7 +39,7 @@ void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
       case i_fs[int i].seek(size_t offset, int seek_from_sof)
                               -> fs_result_t result:
         DWORD ofs = offset;
-        if (seek_from_sof) {
+        if (!seek_from_sof) {
           ofs += fatfs.fptr;
         }
         result = pf_lseek(ofs);
