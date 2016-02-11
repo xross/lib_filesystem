@@ -31,7 +31,8 @@ void application(client interface fs_basic_if i_fs) {
   }
 
   debug_printf("Opening file...\n");
-  result = i_fs.open("HELLO.TXT");
+  char filename[] = "HELLO.TXT";
+  result = i_fs.open(filename, sizeof(filename));
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
     exit(1);
@@ -55,7 +56,7 @@ void application(client interface fs_basic_if i_fs) {
   // Init buffer with pattern
   memset(buf, BUFFER_PATTERN, BUFFER_SIZE);
   bytes_to_read = PARTIAL_READ_LEN;
-  result = i_fs.read(buf, bytes_to_read, &num_bytes_read);
+  result = i_fs.read(buf, sizeof(buf), bytes_to_read, num_bytes_read);
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
     exit(1);
@@ -94,7 +95,7 @@ void application(client interface fs_basic_if i_fs) {
   num_bytes_read = 0;
   // Init buffer with pattern
   memset(buf, BUFFER_PATTERN, BUFFER_SIZE);
-  result = i_fs.read(buf, file_size, &num_bytes_read);
+  result = i_fs.read(buf, sizeof(buf), file_size, num_bytes_read);
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
     exit(1);

@@ -21,16 +21,16 @@ void filesystem(server interface fs_if i_fs[n_fs_clients],
         }
         break;
 
-      case i_fs[int i].open(const char *path) -> fs_result_t result:
+      case i_fs[int i].open(char path[n], size_t n) -> fs_result_t result:
         if (fs_format == FS_FORMAT_FAT16) {
           // result = pf_open(path);
         }
         break;
 
-      case i_fs[int i].read(uint8_t *buf, size_t bytes_to_read,
-                            size_t *num_bytes_read) -> fs_result_t result:
+      case i_fs[int i].read(uint8_t buf[n], size_t n, size_t bytes_to_read,
+                            size_t &num_bytes_read) -> fs_result_t result:
         if (fs_format == FS_FORMAT_FAT16) {
-          // result = pf_read(buf, (UINT)bytes_to_read, num_bytes_read);
+          // result = pf_read(buf, (UINT)num_bytes_read, (UINT*)&num_bytes_read);
         }
         break;
 
