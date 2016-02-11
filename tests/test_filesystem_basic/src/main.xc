@@ -5,7 +5,13 @@
 #include <QuadSpecMacros.h>
 #include <platform.h>
 #include "debug_print.h"
+#include "xassert.h"
 #include <stdlib.h>
+#include <string.h> // Included for memset
+
+#define BUFFER_SIZE      50
+#define PARTIAL_READ_LEN 5
+#define BUFFER_PATTERN   0xAAAAAAAA
 
 fl_QSPIPorts qspi_flash_ports = {
   PORT_SQI_CS,
@@ -39,16 +45,16 @@ void application(client interface fs_basic_if i_fs) {
     exit(1);
   }
 
-  debug_printf("Reading file...\n");
-  size_t bytes_to_read;
-  size_t num_bytes_read;
-  uint8_t buf[1024];
-  // TODO: replace the file size check with assert to ensure whole file read
-  if (file_size > 1024) {
-    bytes_to_read = 1024;
-  } else {
-    bytes_to_read = file_size;
-  }
+  uint8_t buf[BUFFER_SIZE];
+
+  debug_printf("Reading part of file...\n");
+  xassert((file_size > PARTIAL_READ_LEN)
+          && msg("Partial read length exceeds file size!\n"));
+  size_t bytes_to_read = 0;
+  size_t num_bytes_read = 0;
+  // Init buffer with pattern
+  memset(buf, BUFFER_PATTERN, BUFFER_SIZE);
+  bytes_to_read = PARTIAL_READ_LEN;
   result = i_fs.read(buf, bytes_to_read, &num_bytes_read);
   if (result != FS_RES_OK) {
     debug_printf("result = %d\n", result);
@@ -62,8 +68,56 @@ void application(client interface fs_basic_if i_fs) {
     debug_printf("%c", buf[i]);
   }
   debug_printf("\n");
+  if (bytes_to_read != num_bytes_read) {
+    exit(1);
+  }
+  // Check end of buffer hasn't been overwritten
+  for (int i = bytes_to_read; i < BUFFER_SIZE; i++) {
+    if (buf[i] != (uint8_t)BUFFER_PATTERN) {
+      debug_printf("Unexpected write to buffer at index %d, "
+                   "found %x, expected %x!\n",
+                   i, buf[i], (uint8_t)BUFFER_PATTERN);
+    }
+  }
 
-  // TODO: Attempt partial file read
+  debug_printf("Seeking back to beginning of file...\n");
+  result = i_fs.seek(0, 1);
+  if (result != FS_RES_OK) {
+    debug_printf("result = %d\n", result);
+    exit(1);
+  }
+
+  debug_printf("Reading whole file...\n");
+  xassert((file_size < BUFFER_SIZE)
+          && msg("Buffer not large enough to read whole file in to!\n"));
+  bytes_to_read = 0;
+  num_bytes_read = 0;
+  // Init buffer with pattern
+  memset(buf, BUFFER_PATTERN, BUFFER_SIZE);
+  result = i_fs.read(buf, file_size, &num_bytes_read);
+  if (result != FS_RES_OK) {
+    debug_printf("result = %d\n", result);
+    exit(1);
+  }
+
+  debug_printf("Attempted to read all of %d byte file.\n"
+               "Read %d byte(s) of file:\n",
+               file_size, num_bytes_read);
+  for (int i = 0; i < num_bytes_read; i++) {
+    debug_printf("%c", buf[i]);
+  }
+  debug_printf("\n");
+  if (file_size != num_bytes_read) {
+    exit(1);
+  }
+  // Check end of buffer hasn't been overwritten
+  for (int i = file_size; i < BUFFER_SIZE; i++) {
+    if (buf[i] != (uint8_t)BUFFER_PATTERN) {
+      debug_printf("Unexpected write to buffer at index %d, "
+                   "found %x, expected %x!\n",
+                   i, buf[i], (uint8_t)BUFFER_PATTERN);
+    }
+  }
 
   exit(0);
 }
