@@ -111,7 +111,7 @@ int main(int argc, char const *argv[]) {
       printf("->Failed to seek to end of file %s\n", path_on_host);
       return 1;
     }
-    size_t bytes_in_file = ftell(file_on_host);
+    long bytes_in_file = ftell(file_on_host);
     if (-1 == bytes_in_file) {
       printf("->Failed to get size of file %s\n", path_on_host);
       return 1;
@@ -133,7 +133,7 @@ int main(int argc, char const *argv[]) {
 
     // Copy the file into memory
     if (fread(file_contents, sizeof(char), bytes_in_file, file_on_host) !=
-        bytes_in_file) {
+        (size_t)bytes_in_file) {
       printf("->Failed to read contents into buffer for file %s\n",
              path_on_host);
       return 1;

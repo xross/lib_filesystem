@@ -3,7 +3,7 @@ SECTOR_COUNT ?= 3444 # Same as high density 3.5" floppy disk
 BLOCK_SIZE ?= 128 # Erase block size
 
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -Wextra
 
 FAT_DIR = ../../src/file_systems/fatfs
 FAT_SRC = $(FAT_DIR)/ff.c

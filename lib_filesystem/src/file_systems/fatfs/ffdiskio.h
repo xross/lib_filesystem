@@ -36,7 +36,7 @@ DSTATUS ff_disk_initialize (BYTE pdrv);
 DSTATUS ff_disk_status (BYTE pdrv);
 DRESULT ff_disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);
 DRESULT ff_disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
-DRESULT ff_disk_ioctl (BYTE pdrv, BYTE cmd, DWORD* buff);
+DRESULT ff_disk_ioctl (BYTE pdrv, BYTE cmd, WORD* buff);
 
 
 /* Disk Status Bits (DSTATUS) */

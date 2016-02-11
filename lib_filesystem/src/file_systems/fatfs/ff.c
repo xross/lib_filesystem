@@ -4125,7 +4125,7 @@ FRESULT f_mkfs (
     n_vol = LD_DWORD(tbl + 12); /* Volume size */
   } else {
     /* Create a partition in this function */
-    if (ff_disk_ioctl(pdrv, GET_SECTOR_COUNT, &n_vol) != RES_OK || n_vol < 128)
+    if (ff_disk_ioctl(pdrv, GET_SECTOR_COUNT, (WORD*)&n_vol) != RES_OK || n_vol < 128)
       return FR_DISK_ERR;
     b_vol = (sfd) ? 0 : 63;   /* Volume start sector */
     n_vol -= b_vol;       /* Volume size */
@@ -4164,7 +4164,7 @@ FRESULT f_mkfs (
   if (n_vol < b_data + au - b_vol) return FR_MKFS_ABORTED;  /* Too small volume */
 
   /* Align data start sector to erase block boundary (for flash memory media) */
-  if (ff_disk_ioctl(pdrv, GET_BLOCK_SIZE, &n) != RES_OK || !n || n > 32768) n = 1;
+  if (ff_disk_ioctl(pdrv, GET_BLOCK_SIZE, (WORD*)&n) != RES_OK || !n || n > 32768) n = 1;
   n = (b_data + n - 1) & ~(n - 1);  /* Next nearest erase block from current data start */
   n = (n - b_data) / N_FATS;
   if (fmt == FS_FAT32) {    /* FAT32: Move FAT offset */
