@@ -45,7 +45,7 @@ void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
                 && msg("Length of buf exceeds MAX_ARRAY_SIZE\n"));
         result = pf_read(local_buf, (UINT)bytes_to_read, (UINT*)&num_bytes_read);
         // Copy the local data to the remote array
-        memcpy(buf, local_buf, n*sizeof(uint8_t));
+        memcpy(buf, local_buf, num_bytes_read*sizeof(uint8_t));
         break;
 
       case i_fs[int i].seek(size_t offset, int seek_from_sof)
