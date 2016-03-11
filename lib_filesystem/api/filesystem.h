@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#define MAX_ARRAY_SIZE 256
+#define MAX_ARRAY_SIZE 512
 
 /** TODO: document */
 typedef enum {
