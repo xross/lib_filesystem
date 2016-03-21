@@ -5,7 +5,11 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#ifndef MAX_ARRAY_SIZE
+/** TODO: document */
+// FIXME: prepend define name with "FS_"
 #define MAX_ARRAY_SIZE 512
+#endif
 
 /** TODO: document */
 typedef enum {
