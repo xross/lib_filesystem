@@ -89,26 +89,24 @@ typedef interface fs_basic_if {
   /** TODO: document */
   fs_result_t size(size_t &filesize_bytes);
 
+  /** TODO: document */
+  fs_result_t write(uint8_t buf[n], size_t n, size_t bytes_to_write,
+                    size_t &num_bytes_written);
+
 } fs_basic_if;
 
 #if 0
 extends client interface fs_basic_if : {
 
   /** TODO: document */
-  inline fs_result_t write() {
+  inline fs_result_t open_dir(client interface fs_basic_if i_fs) {
     return FS_RES_OK;
   }
 
   /** TODO: document */
-  inline fs_result_t open_dir() {
+  inline fs_result_t read_dir(client interface fs_basic_if i_fs) {
     return FS_RES_OK;
   }
-
-  /** TODO: document */
-  inline fs_result_t read_dir() {
-    return FS_RES_OK;
-  }
-
 }
 #endif
 

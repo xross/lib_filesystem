@@ -65,6 +65,21 @@ void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
           result = FS_RES_NOT_OPENED;
         }
         break;
+
+      case i_fs[int i].write(uint8_t buf[n],
+                             size_t n, size_t bytes_to_write,
+                             size_t &num_bytes_written) -> fs_result_t result:
+        uint8_t local_buf[MAX_ARRAY_SIZE];
+        xassert((n <= MAX_ARRAY_SIZE)
+                    && msg("Length of buf exceeds MAX_ARRAY_SIZE\n"));
+        memcpy(local_buf, buf, bytes_to_write*sizeof(uint8_t));
+        // TODO: Seek to sector boundary (see http://elm-chan.org/fsw/ff/pf/write.html)
+        // FIXME: should return an fs_result_t value
+        result = pf_write(local_buf, (UINT)bytes_to_write, (UINT*)&num_bytes_written);
+        xassert((""))
+        // Finalise write operation
+        result = pf_write(0, 0, (UINT*)&num_bytes_written);
+        break;
     }
   }
 }
