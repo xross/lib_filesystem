@@ -77,10 +77,10 @@ typedef interface fs_basic_if {
   fs_result_t mount();
 
   /** TODO: document */
-  fs_result_t open(char path[n], size_t n);
+  fs_result_t open(char path[n], static const size_t n);
 
   /** TODO: document */
-  fs_result_t read(uint8_t buf[n], size_t n, size_t bytes_to_read,
+  fs_result_t read(uint8_t buf[n], static const size_t n, size_t bytes_to_read,
                    size_t &num_bytes_read);
 
   /** TODO: document */
@@ -115,7 +115,7 @@ extends client interface fs_basic_if : {
 /** TODO: document */
 [[distributable]]
 void filesystem_basic(server interface fs_basic_if i_fs[n_fs_clients],
-                      size_t n_fs_clients,
+                      static const size_t n_fs_clients,
                       fs_format_t fs_format,
                       client interface fs_storage_media_if i_storage_media);
 
@@ -144,10 +144,10 @@ typedef interface fs_if {
   fs_result_t mount();
 
   /** TODO: document */
-  fs_result_t open(char path[n], size_t n);
+  fs_result_t open(char path[n], static const size_t n);
 
   /** TODO: document */
-  fs_result_t read(uint8_t buf[n], size_t n, size_t bytes_to_read,
+  fs_result_t read(uint8_t buf[n], static const size_t n, size_t bytes_to_read,
                    size_t &num_bytes_read);
 
   /** TODO: document */
@@ -190,7 +190,7 @@ typedef interface fs_if {
 /** TODO: document */
 [[distributable]]
 void filesystem(server interface fs_if i_fs[n_fs_clients],
-                size_t n_fs_clients,
+                static const size_t n_fs_clients,
                 fs_format_t fs_format,
                 client interface fs_storage_media_if i_storage_media);
 
