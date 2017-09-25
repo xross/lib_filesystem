@@ -18,3 +18,5 @@ test_results.csv
 *.log
 lib_filesystem/disk_image_creators/fat/fat_image_creator
 tests/test_petit_fatfs/petit_fatfs_test
+build
+.lock-waf_*
